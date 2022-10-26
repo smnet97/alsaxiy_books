@@ -21,7 +21,10 @@ class UserProfileView(views.APIView):
     def get(self, request):
         qs = UserModel.objects.all().get(username=request.user)
         serializer = UserProfileSerializer(qs)
-        return Response(serializer.data)
+        return Response({
+            'profile': serializer.data,
+            'order_history': 'order history data'
+        })
 
     def patch(self, request):
         serializer = UserProfileSerializer(data=request.data, instance=request.user)
