@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'drf_yasg',
     "rest_framework",
     'django_password_validators',
     'django_password_validators.password_history',
@@ -150,7 +151,6 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'users.UserModel'
-
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=50),
