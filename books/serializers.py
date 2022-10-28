@@ -1,5 +1,17 @@
 from rest_framework import serializers
-from .models import BookModel, AutherModel, BookImageModel, FeaturesModel
+from .models import BookModel, AutherModel, BookImageModel, FeaturesModel, CategoryModel
+
+
+class CategoryModelSerializer(serializers.ModelSerializer):
+    count = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CategoryModel
+        fields = ['id', 'name', 'count']
+
+    def get_count(self, obj):
+        count = BookModel.objects.filter(category=obj).count()
+        return count
 
 
 class FeaturesModelSerializer(serializers.ModelSerializer):

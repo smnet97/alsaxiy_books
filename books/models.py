@@ -1,6 +1,17 @@
 from django.db import models
 
 
+class CategoryModel(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+
+
 class AutherModel(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -12,7 +23,7 @@ class AutherModel(models.Model):
         return f"{self.first_name} {self.last_name}"
 
     def __str__(self):
-        return self.get_full_name()
+        return self.get_full_name
 
     class Meta:
         verbose_name = 'auther'
@@ -63,6 +74,7 @@ class FeaturesModel(models.Model):
 class BookModel(models.Model):
     title = models.CharField(max_length=255)
     auther = models.ForeignKey(AutherModel, on_delete=models.RESTRICT)
+    category = models.ForeignKey(CategoryModel, on_delete=models.RESTRICT, null=True, blank=True)
     price = models.FloatField()
     real_price = models.FloatField()
     discount = models.SmallIntegerField(default=0)
@@ -78,7 +90,7 @@ class BookModel(models.Model):
         return self.discount != 0
 
     def __str__(self):
-        return self.title
+        return f"{self.title}"
 
     class Meta:
         verbose_name = 'book'

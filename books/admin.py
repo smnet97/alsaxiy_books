@@ -2,6 +2,7 @@ from django.contrib import admin
 from . import models
 
 admin.site.register(models.AutherModel)
+admin.site.register(models.CategoryModel)
 admin.site.register(models.BookImageModel)
 admin.site.register(models.TranslatorModel)
 admin.site.register(models.FeaturesModel)
